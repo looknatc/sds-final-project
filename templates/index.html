@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <h1>BMI Calculator</h1>
+    <form method="POST" action="/">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" name="weight" id="weight" required>
+        <br><br>
+        <label for="height">Height (m):</label>
+        <input type="number" step="0.01" name="height" id="height" required>
+        <br><br>
+        <input type="submit" value="Calculate BMI">
+    </form>
+
+    <h2>Result:</h2>
+    <p>BMI: <span id="bmiResult"></span></p>
+    <p>Classification: <span id="classificationResult"></span></p>
+    <p>Risk Assessment: <span id="riskResult"></span></p>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value);
+            const data = { weight, height };
+
+            // Make a request to the Calculator Service (replace with the actual URL)
+            const response = await fetch("http://localhost:5001/calculate_bmi", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                const bmi = result.bmi;
+
+                document.getElementById("bmiResult").textContent = bmi;
+
+                // Make a request to the Classification Service (replace with the actual URL)
+                const classificationResponse = await fetch("http://localhost:5002/classify_bmi", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ bmi }),
+                });
+
+                if (classificationResponse.ok) {
+                    const classificationResult = await classificationResponse.json();
+                    document.getElementById("classificationResult").textContent = classificationResult.classification;
+
+                    // Make a request to the Risk Service (replace with the actual URL)
+                    const riskResponse = await fetch("http://localhost:5003/assess_risk", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ classification: classificationResult.classification }),
+                    });
+
+                    if (riskResponse.ok) {
+                        const riskResult = await riskResponse.json();
+                        document.getElementById("riskResult").textContent = riskResult.risk_assessment;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
