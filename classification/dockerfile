@@ -2,9 +2,14 @@ FROM python:3.9.10-slim
 
 WORKDIR /app
 
+RUN apt-get update \
+    && apt-get install -y iputils-ping curl nano \
+    && rm -rf /var/lib/apt/lists/*
+
+
 COPY classification.py .
 
-RUN pip install Flask
+RUN pip install Flask Flask-CORS
 
 EXPOSE 5002
 

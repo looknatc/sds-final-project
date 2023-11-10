@@ -2,6 +2,11 @@ FROM python:3.9.10-slim
 
 WORKDIR /app
 
+# Install additional tools
+RUN apt-get update \
+    && apt-get install -y iputils-ping curl nano \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY calculator.py .
 
 RUN pip install Flask Flask-CORS

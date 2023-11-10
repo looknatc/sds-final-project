@@ -13,5 +13,9 @@ def calculate_bmi():
     bmi = weight / (height ** 2)
     return jsonify({"bmi": bmi})
 
+@app.route("/calculate_bmi", methods=["GET"])
+def calculate_bmi2():
+    return jsonify({"kuai": "sds"})
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001)

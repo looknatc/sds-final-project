@@ -21,11 +21,12 @@
     <p>Risk Assessment: <span id="riskResult"></span></p>
 
     <script>
-        const calculatorURL = process.env.CALCULATOR_SERVICE_URL || "http://localhost:5001/calculate_bmi";
-        const classificationURL = process.env.CLASSIFICATION_SERVICE_URL || "http://localhost:5002/classify_bmi";
-        const riskURL = process.env.RISK_SERVICE_URL || "http://localhost:5003/assess_risk";
+        // const calculatorURL = process.env.CALCULATOR_SERVICE_URL || "http://localhost:5001/calculate_bmi";
+        // const classificationURL = process.env.CLASSIFICATION_SERVICE_URL || "http://localhost:5002/classify_bmi";
+        // const riskURL = process.env.RISK_SERVICE_URL || "http://localhost:5003/assess_risk";
 
-        
+        // const calculationServiceURL = "http://calculation-service:5001/calculate_bmi";
+
         document.querySelector("form").addEventListener("submit", async function (event) {
             event.preventDefault();
             const weight = parseFloat(document.getElementById("weight").value);
@@ -33,13 +34,15 @@
             const data = { weight, height };
 
             // Make a request to the Calculator Service (replace with the actual URL)
-            const response = await fetch("http://localhost:5001/calculate_bmi", {
-            // const response = await fetch("calculatorURL", {
-                method: "POST",
+            // const response = await fetch("http://localhost:5001/calculate_bmi", {
+            const queryParams = new URLSearchParams(data);
+            const url = `/calculate_bmi?${queryParams.toString()}`;
+            const response = await fetch(url, {
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data),
+                // body: JSON.stringify(data),
             });
 
             if (response.ok) {
@@ -49,28 +52,32 @@
                 document.getElementById("bmiResult").textContent = bmi;
 
                 // Make a request to the Classification Service (replace with the actual URL)
-                const classificationResponse = await fetch("http://localhost:5002/classify_bmi", {
+                const queryParams = new URLSearchParams({bmi});
+                const url = `/classify_bmi?${queryParams.toString()}`;
+                const classificationResponse = await fetch(url, {
                 // const classificationResponse = await fetch(classificationURL, {
-                    method: "POST",
+                    method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ bmi }),
+                    // body: JSON.stringify({ bmi }),
                 });
 
                 if (classificationResponse.ok) {
                     const classificationResult = await classificationResponse.json();
-                    document.getElementById("classificationResult").textContent = classificationResult.classification;
+                    const classification = classificationResult.classification;
+                    document.getElementById("classificationResult").textContent = classification;
 
                     // Make a request to the Risk Service (replace with the actual URL)
-                   
-                    const riskResponse = await fetch(" http://localhost:5003/assess_risk", {
+                    const queryParams = new URLSearchParams(classificationResult);
+                    const url = `/assess_risk?${queryParams.toString()}`;
+                    const riskResponse = await fetch(url, {
                     // const riskResponse = await fetch(riskURL, {
-                        method: "POST",
+                        method: "GET",
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({ classification: classificationResult.classification }),
+                        // body: JSON.stringify({ classification: classificationResult.classification }),
                     });
 
                     if (riskResponse.ok) {
