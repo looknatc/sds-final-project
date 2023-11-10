@@ -33,12 +33,12 @@ app.template_folder = "templates"  # Change "templates" to your folder name if i
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    if request.method == "POST":
-        weight = float(request.form["weight"])
-        height = float(request.form["height"])
-        # You can make a request to the Calculator Service here
-        # bmi = make_request_to_calculator_service(weight, height)
-        return f"Weight: {weight}, Height: {height}, BMI: {bmi}"
+    # if request.method == "POST":
+    #     weight = float(request.form["weight"])
+    #     height = float(request.form["height"])
+    #     # You can make a request to the Calculator Service here
+    #     # bmi = make_request_to_calculator_service(weight, height)
+    #     return f"Weight: {weight}, Height: {height}, BMI: {bmi}"
     return render_template("index.html")
 
 if __name__ == "__main__":

@@ -1,0 +1,11 @@
+FROM python:3.9.10-slim
+
+WORKDIR /app
+
+COPY calculator.py .
+
+RUN pip install Flask Flask-CORS
+ 
+EXPOSE 5001
+
+CMD ["python", "calculator.py"]

@@ -1,0 +1,11 @@
+FROM python:3.9.10-slim
+
+WORKDIR /app
+
+COPY risk.py .
+
+RUN pip install Flask
+
+EXPOSE 5003
+
+CMD ["python", "risk.py"]
