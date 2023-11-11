@@ -1,0 +1,105 @@
+root@osboxes:/media/sf_Shared/sds/final_project# microk8s config
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUREekNDQWZlZ0F3SUJBZ0lVUDEvQ0ZyK1NwWWJ5RWJtbjNlN3BIYVMzTEhnd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0Z6RVZNQk1HQTFVRUF3d01NVEF1TVRVeUxqRTRNeTR4TUI0WERUSXpNVEV4TURBM05UTXhNbG9YRFRNegpNVEV3TnpBM05UTXhNbG93RnpFVk1CTUdBMVVFQXd3TU1UQXVNVFV5TGpFNE15NHhNSUlCSWpBTkJna3Foa2lHCjl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUE3NTVEdXM4SnpsU0d6WE1TUUNrSHFWTFpNRko1VnRUdW1oN3oKV0MwUDl6Rk1INmdsNzAvM2F2amdTYW84Q2gwcFRuUFo1RGdkOTdPbmNUNDhtSVNmVzk5L1Y4WEEvVVIzcER1UgpmMUF4ZUVidGx5N3ZqblJrWjUraExNNXVsTnEvQVBLbTN0UUxsaW1TNVd0NS9na1c4K2pZUTYwMnJFTmt6bk9DCkU2enM1ZFVqZnh5NU14WTRLWlhZU1dGRkpZZTkwcWZqeXNaTXpsRngvVlZUUitYbUc1cVlvTDlGaW1WRSs5RFEKL1QvVVg3VHVsYUQ0SFkzQlVDalhQUnhsZmlxVzVLQ3ZJYm1IVVBVQ3M0L1h3SkZTRFQ1c0xhNVhlblpWRGMxbQozUmhmbVpSSy82UXVZdFJVVGJ5WUo0T1Y1UEp2c3g2QU93QjJPWmxidVdzdjJhSnc2d0lEQVFBQm8xTXdVVEFkCkJnTlZIUTRFRmdRVUQ4QllGRG9PTkdpRXVCWHByaU16b0ZyZFYrTXdId1lEVlIwakJCZ3dGb0FVRDhCWUZEb08KTkdpRXVCWHByaU16b0ZyZFYrTXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBUUVBSC9tZmVQMjZDWGdTOGQ5S2dzQ09nZVZKbC95SlZRc2VMeGYxS2dRV1MrR2JjMkN0bmtWZ01KTTVndWdECmNWaXZyYU9EWHRnS3R3UEJUV2FuVkd4aWZmL21hQ3ZMS1d0MmU4cStvT1pqZmN5bVMyM1Z1OWhkaUNEU2ljNkcKWk9OKy9BWWswbGUrUEtycXAvbWR5bjIzckIydVlTb0JHMTZHYlRkMDVYUzRJY3hVQ01ha0pRUk1UdWlWTFEyWgpCZDZQRExWaDQvQW1XZGJCd2tjWTRzYVhSWGE5SExKaENta1JhVllJbGRjeTRKNzVxclZDQ2lGL0lYbUFTQjd1ClJqcDJ0Yi8xR2dGaW9rZWhZU2puNTlWZEdtakpxRTVrMTFXNS9ZcGdkakVGSVBMNjlXNTJwQ0trcUFrb1VGOUgKMVdMK0xxWTlwSk95aGRuMFc2U0QxNE84aFE9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://192.168.1.177:16443
+  name: microk8s-cluster
+contexts:
+- context:
+    cluster: microk8s-cluster
+    user: admin
+  name: microk8s
+current-context: microk8s
+kind: Config
+preferences: {}
+users:
+- name: admin
+  user:
+    token: YWhUOE55azNFMXNmMWNoQzZlUXU1ZythV2lDdzZhUHFrVzdONG11dk9lVT0K
+
+
+root@osboxes:/media/sf_Shared/sds/final_project# microk8s add-node
+From the node you wish to join to this cluster, run the following:
+microk8s join 192.168.1.177:25000/f963d290d1ad926d46d4cc8bdfb9d27a/8efadad6747a
+
+Use the '--worker' flag to join a node as a worker not running the control plane, eg:
+microk8s join 192.168.1.177:25000/f963d290d1ad926d46d4cc8bdfb9d27a/8efadad6747a --worker
+
+If the node you are adding is not reachable through the default interface you can use one of the following:
+microk8s join 192.168.1.177:25000/f963d290d1ad926d46d4cc8bdfb9d27a/8efadad6747a
+microk8s join 172.17.0.1:25000/f963d290d1ad926d46d4cc8bdfb9d27a/8efadad6747a
+microk8s join 2405:9800:b650:d71::e:25000/f963d290d1ad926d46d4cc8bdfb9d27a/8efadad6747a
+microk8s join 2405:9800:b650:d71:35ef:c93f:e7d6:7e9a:25000/f963d290d1ad926d46d4cc8bdfb9d27a/8efadad6747a
+microk8s join 2405:9800:b650:d71:b9fa:5e51:ad11:7180:25000/f963d290d1ad926d46d4cc8bdfb9d27a/8efadad6747a
+root@osboxes:/media/sf_Shared/sds/final_project# nano x.txt
+
+
+
+root@osboxes:/media/sf_Shared/sds/final_project# microk8s add-node
+From the node you wish to join to this cluster, run the following:
+microk8s join 192.168.1.177:25000/b14fcb6fe58de3f9efdf93d9eac88379/8efadad6747a
+
+Use the '--worker' flag to join a node as a worker not running the control plane, eg:
+microk8s join 192.168.1.177:25000/b14fcb6fe58de3f9efdf93d9eac88379/8efadad6747a --worker
+
+If the node you are adding is not reachable through the default interface you can use one of the following:
+microk8s join 192.168.1.177:25000/b14fcb6fe58de3f9efdf93d9eac88379/8efadad6747a
+microk8s join 172.17.0.1:25000/b14fcb6fe58de3f9efdf93d9eac88379/8efadad6747a
+microk8s join 2405:9800:b650:d71::e:25000/b14fcb6fe58de3f9efdf93d9eac88379/8efadad6747a
+microk8s join 2405:9800:b650:d71:35ef:c93f:e7d6:7e9a:25000/b14fcb6fe58de3f9efdf93d9eac88379/8efadad6747a
+microk8s join 2405:9800:b650:d71:b9fa:5e51:ad11:7180:25000/b14fcb6fe58de3f9efdf93d9eac88379/8efadad6747a
+
+
+
+root@osboxes:/media/sf_Shared/sds/final_project# ping pi1
+ping: pi1: Temporary failure in name resolution
+
+
+
+root@osboxes:/media/sf_Shared/sds/final_project# microk8s add-node
+From the node you wish to join to this cluster, run the following:
+microk8s join 192.168.1.177:25000/53b8997149557cf66b93372c007d601e/8efadad6747a
+
+Use the '--worker' flag to join a node as a worker not running the control plane, eg:
+microk8s join 192.168.1.177:25000/53b8997149557cf66b93372c007d601e/8efadad6747a --worker
+
+If the node you are adding is not reachable through the default interface you can use one of the following:
+microk8s join 192.168.1.177:25000/53b8997149557cf66b93372c007d601e/8efadad6747a
+microk8s join 172.17.0.1:25000/53b8997149557cf66b93372c007d601e/8efadad6747a
+microk8s join 2405:9800:b650:d71::e:25000/53b8997149557cf66b93372c007d601e/8efadad6747a
+microk8s join 2405:9800:b650:d71:35ef:c93f:e7d6:7e9a:25000/53b8997149557cf66b93372c007d601e/8efadad6747a
+microk8s join 2405:9800:b650:d71:b9fa:5e51:ad11:7180:25000/53b8997149557cf66b93372c007d601e/8efadad6747a
+
+
+
+microk8s kubectl apply -f https://docs.projectcalico.org/v3.18/manifests/calico.yaml
+
+
+root@osboxes:/media/sf_Shared/sds/final_project# microk8s.kubectl get nodes
+NAME      STATUS   ROLES    AGE     VERSION
+osboxes   Ready    <none>   89m     v1.27.7
+pi1       Ready    <none>   5m24s   v1.27.6
+
+
+
+
+root@osboxes:/media/sf_Shared/sds/final_project# microk8s.kubectl get pods
+NAME                                   READY   STATUS             RESTARTS   AGE
+frontend-deployment-6c8647747b-p8nfr   1/1     Running            0          55m
+frontend-deployment-58d79f8b7b-zw8rk   1/2     InvalidImageName   0          116s
+
+
+root@osboxes:/media/sf_Shared/sds/final_project# microk8s.kubectl get services
+NAME                  TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes            ClusterIP      10.152.183.1    <none>        443/TCP          176m
+frontend-service      LoadBalancer   10.152.183.53   <pending>     5000:32105/TCP   158m
+calculation-service   ClusterIP      10.152.183.90   <none>        5001/TCP         10m
+
+
+
+
+
+root@osboxes:/media/sf_Shared/sds/final_project# microk8s.kubectl exec -it frontend-deployment-6c5d7645bb-dq5js -- python --version
+Defaulted container "frontend" out of: frontend, calculation-service
+Python 3.9.10
