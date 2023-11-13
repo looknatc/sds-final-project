@@ -13,7 +13,8 @@ How to create kube-cluster:
 3. join the worker node to cluster by using `microk8s join <ip>:<port>/<token> --worker`
 
 How to deploy application:
-1. 
+1. in vm run `./start.sh` to start the application
+2. to delete the application run `./delete.sh`
 
    
 
