@@ -15,7 +15,7 @@ def calculate_bmi():
 
 @app.route("/calculate_bmi", methods=["GET"])
 def calculate_bmi2():
-    return jsonify({"kuai": "sds"})
+    return jsonify({"hello": "test"})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001)
