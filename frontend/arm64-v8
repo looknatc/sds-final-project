@@ -1,0 +1,26 @@
+# Use the official Python image for arm64 architecture
+FROM python:3.9.10-slim@sha256:9b07a53ef1744bd8c85562577f2bed889c90b372eb2cdd00849b7127bd68636c
+
+# Set the working directory to /app
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y iputils-ping curl nano \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the current directory contents into the container at /app
+COPY frontend.py .
+COPY templates/index.html ./templates/
+
+# Install any needed packages specified in requirements.txt
+RUN pip install Flask Flask-CORS requests
+
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
+
+# Define environment variable
+ENV FLASK_APP=frontend.py
+ENV FLASK_RUN_HOST=0.0.0.0
+
+# Run app.py when the container launches
+CMD ["flask", "run"]

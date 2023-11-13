@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: frontend-deployment
 spec:
-  replicas: 1  # Set the number of replicas based on the desired redundancy
+  replicas: 2  # Set the number of replicas based on the desired redundancy
   selector:
     matchLabels:
       app: frontend
@@ -12,20 +12,29 @@ spec:
       labels:
         app: frontend
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: NotIn
+                values:
+                - osboxes
       containers:
         - name: frontend
-          image: looknat/frontend-service:release-8
+          image: looknat/frontend-service:release-10
           ports:
             - containerPort: 5000
         - name: calculation-service
-          image: looknat/calculation-service:release-k2
+          image: looknat/calculator-service:release-3
           ports:
             - containerPort: 5001
         - name: classification-service
-          image: looknat/classification-service:release-1
+          image: looknat/classification-service:release-2
           ports:
             - containerPort: 5002
         - name: risk-service
-          image: looknat/risk-service:release-1
+          image: looknat/risk-service:release-2
           ports:
             - containerPort: 5003
