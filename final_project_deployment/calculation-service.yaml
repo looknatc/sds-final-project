@@ -4,7 +4,7 @@ metadata:
   name: calculation-service
 spec:
   selector:
-    app: frontend  # Assuming both containers share the same label
+    app: calculation  # Assuming both containers share the same label
   ports:
     - protocol: TCP
       port: 5001

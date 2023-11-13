@@ -4,7 +4,7 @@ metadata:
   name: classification-service
 spec:
   selector:
-    app: frontend  # Assuming both containers share the same label
+    app: classification # Assuming both containers share the same label
   ports:
     - protocol: TCP
       port: 5002

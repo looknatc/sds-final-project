@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: risk-deployment
 spec:
   replicas: 1  # Set the number of replicas based on the desired redundancy
   selector:
     matchLabels:
-      app: frontend
+      app: risk
   template:
     metadata:
       labels:
-        app: frontend
+        app: risk
     spec:
       nodeSelector:
         node.kubernetes.io/microk8s-worker: "microk8s-worker"
       containers:
-        - name: frontend
-          image: looknat/frontend-service:release-10
+        - name: risk-service
+          image: looknat/risk-service:release-2
           ports:
-            - containerPort: 5000
+            - containerPort: 5003
