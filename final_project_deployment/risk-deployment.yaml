@@ -19,3 +19,12 @@ spec:
           image: looknat/risk-service:release-2
           ports:
             - containerPort: 5003
+      tolerations:
+      - key: node.kubernetes.io/not-ready
+        operator: Exists
+        effect: NoExecute
+        tolerationSeconds: 100
+      - key: node.kubernetes.io/unreachable
+        operator: Exists
+        effect: NoExecute
+        tolerationSeconds: 100

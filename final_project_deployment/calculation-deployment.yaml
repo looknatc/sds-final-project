@@ -19,3 +19,12 @@ spec:
           image: looknat/calculator-service:release-3
           ports:
             - containerPort: 5001
+      tolerations:
+      - key: node.kubernetes.io/not-ready
+        operator: Exists
+        effect: NoExecute
+        tolerationSeconds: 100
+      - key: node.kubernetes.io/unreachable
+        operator: Exists
+        effect: NoExecute
+        tolerationSeconds: 100
