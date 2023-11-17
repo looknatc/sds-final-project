@@ -13,6 +13,9 @@ This project demonstrates the setup of a Kubernetes cluster using a WiFi router,
 - 4 Raspberry Pi units
 - 1 WiFi router TP-Link TL WR841N
 
+> [!NOTE]
+> If master and workers nodes are already install microk8s and set up kubebernetes cluster, can skip to [Application Deployment](#application-deployment)
+
 ## Setup and Installation
 
 ### Initial Configuration
