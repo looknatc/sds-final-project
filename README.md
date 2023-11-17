@@ -93,10 +93,15 @@ This section describes the steps to deploy the BMI calculation application withi
    - Kubernetes configuration files for each service are already prepared and can be applied directly.
    - Use the `kubectl apply -f <file name>` command to deploy each service. For example:
       ```
-      kubectl apply -f frontend-service.yaml
-      kubectl apply -f calculator-service.yaml
-      kubectl apply -f classification-service.yaml
-      kubectl apply -f risk-service.yaml
+      microk8s.kubectl apply -f classification-deployment.yaml
+      microk8s.kubectl apply -f calculation-deployment.yaml
+      microk8s.kubectl apply -f risk-deployment.yaml
+      microk8s.kubectl apply -f frontend-deployment.yaml
+      
+      microk8s.kubectl apply -f frontend-service.yaml
+      microk8s.kubectl apply -f calculator-service.yaml
+      microk8s.kubectl apply -f classification-service.yaml
+      microk8s.kubectl apply -f risk-service.yaml
       ``` 
    - Alternatively, you can deploy all services at once using the provided start.sh script:
      ```./start.sh```
