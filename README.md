@@ -106,13 +106,14 @@ This section describes the steps to deploy the BMI calculation application withi
       microk8s.kubectl apply -f classification-service.yaml
       microk8s.kubectl apply -f risk-service.yaml
       ``` 
+      Note: All deployment and service files are in deployment folder
    - Alternatively, you can deploy all services at once using the provided start.sh script:
      ```./start.sh```
    - This script contains all the necessary commands to start the services and should be used for a streamlined deployment process.
 
 ### Accessing the Frontend Service from Another Host
 - To access the Frontend service from a host other than the master node in the same network:
-  - Edit the ```final_project_deployment/frontend-service.yaml``` file:
+  - Edit the ```deployment/frontend-service.yaml``` file:
     - Change the externalIPs field to the IP address of the master node that is running the service.
     - After making this change, the Frontend service can be accessed from any host in the network using the URL ```http://<master node ip>:5000```.
 
