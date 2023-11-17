@@ -82,10 +82,10 @@ This section describes the steps to deploy the BMI calculation application withi
    - The Docker images for each service (Frontend, Calculator, Classification, Risk) have already been built and are available in the Docker registry.
    - Pull images directly from the Docker registry:
      ```
-     docker pull looknat/classification-service:release-0
-     docker pull looknat/calculator-service:release-0
-     docker pull looknat/frontend-service:release-0
-     docker pull looknat/risk-service:release-0
+     docker pull looknat/classification-service:release-10
+     docker pull looknat/calculator-service:release-3
+     docker pull looknat/frontend-service:release-2
+     docker pull looknat/risk-service:release-2
      ```
    - Note: Building the images is not necessary as they are already available.
 
