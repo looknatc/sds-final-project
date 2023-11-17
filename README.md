@@ -81,18 +81,7 @@ This section describes the steps to deploy the BMI calculation application withi
 
 
 ### Build and Deployment Process
-1. **Using Pre-built Docker Images:**
-   - The Docker images for each service (Frontend, Calculator, Classification, Risk) have already been built and are available in the Docker registry.
-   - Pull images directly from the Docker registry:
-     ```
-     docker pull looknat/classification-service:release-10
-     docker pull looknat/calculator-service:release-3
-     docker pull looknat/frontend-service:release-2
-     docker pull looknat/risk-service:release-2
-     ```
-   - Note: Building the images is not necessary as they are already available.
-
-2. **Deploying Services Using Kubernetes Configuration Files:**
+**Deploying Services Using Kubernetes Configuration Files:**
    - Kubernetes configuration files for each service are already prepared and can be applied directly.
    - Use the `kubectl apply -f <file name>` command to deploy each service. For example:
       ```
