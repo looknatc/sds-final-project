@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: risk-deployment
+spec:
+  replicas: 1  # Set the number of replicas based on the desired redundancy
+  selector:
+    matchLabels:
+      app: risk
+  template:
+    metadata:
+      labels:
+        app: risk
+    spec:
+      nodeSelector:
+        node.kubernetes.io/microk8s-worker: "microk8s-worker"
+      containers:
+        - name: risk-service
+          image: looknat/risk-service:release-2
+          ports:
+            - containerPort: 5003
+      tolerations:
+      - key: node.kubernetes.io/not-ready
+        operator: Exists
+        effect: NoExecute
+        tolerationSeconds: 100
+      - key: node.kubernetes.io/unreachable
+        operator: Exists
+        effect: NoExecute
+        tolerationSeconds: 100
